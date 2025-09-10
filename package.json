@@ -1,0 +1,12 @@
+{
+  "name": "slack-webhook-converter",
+  "version": "1.0.0",
+  "description": "Convert JSON format for Slack webhooks",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}
