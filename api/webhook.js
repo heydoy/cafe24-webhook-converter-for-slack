@@ -33,6 +33,9 @@ function convertToSlackFormat(data) {
     // 원본 JSON을 슬랙 포맷으로 변환 
 
     let message = {
+        channel: process.env.SLACK_CHANNEL || '#general',  // 추가: channel 정보
+        username: 'cafe24 알림봇',                          // 추가: 봇 이름
+        icon_emoji: ':shopping_bags:'      
     };
 
     // cafe24 웹훅 데이터 처리 
@@ -44,7 +47,7 @@ function convertToSlackFormat(data) {
         let color = getEventColor(event_no);
 
         message.text = `${eventType}`;
-        message.attatchments = [{
+        message.attachments = [{
             color: color,
             title: `이벤트 수신`,
             fields: [
@@ -74,7 +77,7 @@ function convertToSlackFormat(data) {
             title: '삭제 일시',
             value: formatDate(deleted_date),
             short: false
-        });
+            });
         }
     } else {
     // cafe24 포맷이 아닌 경우 기본 처리
@@ -143,4 +146,21 @@ async function sendToSlack(message) {
   }
 
   return response.data;
+}
+
+function formatDate(dateString) {
+    try {
+        const date = new Date(dateString);
+        return date.toLocaleString('ko-KR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZoneName: 'short'
+        });
+    } catch (error) {
+        return dateString;
+    }
 }
