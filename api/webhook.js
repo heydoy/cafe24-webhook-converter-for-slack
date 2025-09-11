@@ -144,16 +144,3 @@ async function sendToSlack(message) {
 
   return response.data;
 }
-
-```
-{
-    "event_no": 90077,
-    "resource": {
-        "mall_id": "leesunsin",
-        "client_id": "sample7eBNEqSfkd7I8hoA",
-        "app_name": "sample_app",
-        "deleted_date": "2020-07-01T12:30:15+09:00"
-    }
-}
-
-```
